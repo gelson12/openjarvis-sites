@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumière Dental - Premier Dental Care in London</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #528B8B; /* Soft Teal */
+      --color-secondary: #D4AF37; /* Muted Gold */
+      --color-accent: #6CB3B3; /* Brighter Teal for CTAs */
+      --color-dark: #2F4F4F; /* Dark Teal */
+      --color-light: #F8F8F8; /* Off-White */
+      --color-text: #333333; /* Dark Grey Text */
+      --color-subtle-text: #666666; /* Lighter Grey Text */
+
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Source Sans Pro', sans-serif;
+
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+
+      --border-radius: 8px;
+      --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--color-accent);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      color: var(--color-dark);
+      margin-bottom: var(--spacing-sm);
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
+    h4 { font-size: 1.5rem; }
+
+    section {
+      padding: var(--spacing-lg) var(--spacing-md);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-sm);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-light);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-light);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-primary);
+      color: var(--color-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-light);
+    }
+
+    /* Navigation */
+    .header-nav {
+      position: fixed;
+      width: 100%;
+      background-color: transparent;
+      padding: var(--spacing-sm) var(--spacing-md);
+      z-index: 1000;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .header-nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-light);
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-dark);
+    }
+
+    .logo:hover {
+      color: var(--color-primary);
+    }
+
+    .nav-links {
+      display: none; /* Hidden on mobile */
+      list-style: none;
+    }
+
+    .nav-links li {
+      display: inline-block;
+      margin-left: var(--spacing-md);
+    }
+
+    .nav-links a {
+      color: var(--color-dark);
+      font-weight: 400;
+      font-size: 1.05rem;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: block; /* Visible on mobile */
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    .hamburger .bar {
+      width: 25px;
+      height: 3px;
+      background-color: var(--color-dark);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-links.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 100vh;
+      background-color: var(--color-light);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      padding-top: var(--spacing-xl);
+      align-items: center;
+      justify-content: flex-start;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links.active li {
+      margin: var(--spacing-sm) 0;
+    }
+
+    .nav-links.active li a {
+      font-size: 1.2rem;
+    }
+
+    .nav-links.active.open {
+      transform: translateX(0);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-light);
+      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1577880947098-de20b2d3544d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU2MDR8MHwxfHNlYXJjaHw3OXx8ZGVudGFsJTIwY2xpbmljfGVufDB8MHx8fDE3MTc0MzgwMjB8MA&ixlib=rb-4.0.3&q=80&w=1080');
+      background-size: cover;
+      background-position: center;
+      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4); /* Dark overlay */
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+      padding: var(--spacing-md);
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-light);
+      font-weight: 700;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-lg);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero-actions .btn {
+      margin: 0 var(--spacing-xs);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+
+    .hero-actions .btn:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes heroFadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: var(--color-dark);
+      color: var(--color-light);
+      padding: var(--spacing-md) 0;
+      text-align: center;
+    }
+
+    .trust-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: var(--spacing-sm);
+    }
+
+    .trust-item {
+      flex: 1 1 150px; /* Allows items to wrap and grow */
+      min-width: 120px;
+      margin: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trust-item h3 {
+      color: var(--color-secondary);
+      font-size: 2.2rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .trust-item p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Services Section */
+    .services {
+      background-color: var(--color-light);
+      text-align: center;
+    }
+
+    .services h2 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .service-card {
+      background-color: #ffffff;
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .service-card .icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-primary);
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .service-card p {
+      color: var(--color-subtle-text);
+      font-size: 0.95rem;
+    }
+
+    /* About Section */
+    .about {
+      background-color: #ffffff;
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+
+    .about-image, .about-text {
+      flex: 1;
+    }
+
+    .about-image img {
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      object-fit: cover;
+      max-height: 400px;
+      width: 100%;
+    }
+
+    .about-text h2 {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .about-text p {
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-subtle-text);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--color-light);
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .testimonial-card {
+      background-color: #ffffff;
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .testimonial-card blockquote {
+      font-style: italic;
+      color: var(--color-text);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.05rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      margin-top: auto; /* Push to bottom */
+    }
+
+    .testimonial-author img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: var(--spacing-sm);
+      object-fit: cover;
+    }
+
+    .author-info strong {
+      display: block;
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+
+    .author-info span {
+      font-size: 0.9rem;
+      color: var(--color-subtle-text);
+    }
+
+    /* Why Choose Us Section */
+    .why-choose-us {
+      background-color: var(--color-dark);
+      color: var(--color-light);
+      text-align: center;
+    }
+
+    .why-choose-us h2 {
+      color: var(--color-light);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .reason-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+    }
+
+    .reason-card {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .reason-card:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .reason-card .icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-secondary);
+    }
+
+    .reason-card h3 {
+      color: var(--color-light);
+      font-size: 1.4rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .reason-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--color-light);
+      text-align: center;
+    }
+
+    .contact h2 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .contact-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-medium);
+      text-align: left;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+      color: var(--color-dark);
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: var(--spacing-md);
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-text);
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-form input[type="text"]:focus,
+    .contact-form input[type="email"]:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(82, 139, 139, 0.2);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--color-dark);
+      color: rgba(255, 255, 255, 0.8);
+      padding: var(--spacing-lg) var(--spacing-md);
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .footer-col h4 {
+      color: var(--color-light);
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.2rem;
+    }
+
+    .footer-col p {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .footer-col ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--color-secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+
+    .social-links a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.5rem;
+    }
+
+    .social-links a:hover {
+      color: var(--color-secondary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: var(--spacing-md);
+    }
+
+    /* Responsive Styles */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+
+      .hamburger {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 5.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.8rem;
+      }
+
+      .about-content {
+        flex-direction: row;
+      }
+
+      .about-image {
+        order: 2; /* Image on right */
+        padding-left: var(--spacing-lg);
+      }
+
+      .about-text {
+        order: 1; /* Text on left */
+        padding-right: var(--spacing-lg);
+      }
+
+      .contact-form-container {
+        padding: var(--spacing-xl);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      h1 { font-size: 4rem; }
+      h2 { font-size: 3rem; }
+      h3 { font-size: 2.5rem; }
+      h4 { font-size: 1.8rem; }
+
+      .hero-title {
+        font-size: 6rem;
+      }
+
+      .hero-subtitle {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-nav" id="main-header">
+    <div class="nav-content container">
+      <a href="#hero" class="logo">Lumière Dental</a>
+      <nav>
+        <div class="hamburger" aria-label="Toggle navigation menu">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact" class="btn btn-primary">Book Appointment</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Experience Radiant Oral Health</h1>
+        <p class="hero-subtitle">Premium dental care designed for your comfort and lasting well-being in the heart of London.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book an Appointment</a>
+          <a href="#services" class="btn btn-secondary">Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust-strip" class="trust-strip is-visible">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <h3>15+</h3>
+            <p>Years of Excellence</p>
+          </div>
+          <div class="trust-item">
+            <h3>98%</h3>
+            <p>Patient Satisfaction</p>
+          </div>
+          <div class="trust-item">
+            <h3>4.9<small>★</small></h3>
+            <p>Google Reviews</p>
+          </div>
+          <div class="trust-item">
+            <h3>Modern</h3>
+            <p>State-of-the-Art Clinic</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Our Comprehensive Dental Services</h2>
+        <div class="service-grid">
+          <div class="service-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            <h3>General Dentistry</h3>
+            <p>Routine check-ups, cleanings, and preventative care to maintain your oral health.</p>
+          </div>
+          <div class="service-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+            </svg>
+            <h3>Cosmetic Dentistry</h3>
+            <p>Transform your smile with teeth whitening, veneers, and smile makeovers for confidence.</p>
+          </div>
+          <div class="service-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2zm7 0h-2V7h2v2zm0 8h-2v-6h2v6z"/>
+            </svg>
+            <h3>Restorative Treatments</h3>
+            <p>Fillings, crowns, bridges, and dental implants to restore function and aesthetics.</p>
+          </div>
+          <div class="service-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+            <h3>Emergency Care</h3>
+            <p>Prompt and effective treatment for dental emergencies, relieving pain and discomfort.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container about-content">
+        <div class="about-text">
+          <h2>About Lumière Dental: Your Smile, Our Priority</h2>
+          <p>At Lumière Dental, we believe in combining unparalleled expertise with genuine compassion. Located in the heart of London, our clinic is a sanctuary where advanced dental technology meets a serene, welcoming environment.</p>
+          <p>Dr. Elara Vance founded Lumière Dental with a vision: to create a practice where every patient feels heard, understood, and entirely at ease. Our team of highly skilled professionals is dedicated to providing personalized care, ensuring your journey to optimal oral health is comfortable and rewarding. We prioritize prevention, education, and delivering beautiful, lasting results.</p>
+          <p>We are committed to using the latest, safest techniques and materials to ensure your treatments are effective, minimally invasive, and tailored to your unique needs. Trust us to illuminate your smile.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1598283339091-62d22f6d2f95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU2MDR8MHwxfHNlYXJjaHw0OHx8ZGVudGlzdCUyMHdvbWFufGVufDB8MHx8fDE3MTc0MzkxNjl8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Dr. Elara Vance smiling in a modern dental office.">
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2>What Our Patients Say</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <blockquote>"I've never felt so comfortable at a dental clinic. The team at Lumière Dental is incredibly kind and professional. My smile has never looked better!"</blockquote>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU2MDR8MHwxfHNlYXJjaHw3MXx8cG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8MHx8fDE3MTc0Mzk1NDV8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Portrait of Sarah Jenkins">
+              <div class="author-info">
+                <strong>Sarah Jenkins</strong>
+                <span>Marketing Executive</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"From the moment I walked in, I knew I was in good hands. The clinic is beautiful, and the care is exceptional. Highly recommend!"</blockquote>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a9b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU2MDR8MHwxfHNlYXJjaHw3OHx8cG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8MHx8fDE3MTc0Mzk1NDV8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Portrait of Michael Brown">
+              <div class="author-info">
+                <strong>Michael Brown</strong>
+                <span>Financial Analyst</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <blockquote>"The personalized treatment plan and attention to detail were outstanding. Lumière Dental truly cares about their patients' health and comfort."</blockquote>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1573497019940-f70732386e08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjU2MDR8MHwxfHNlYXJjaHw4Mnx8cG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8MHx8fDE3MTc0Mzk1NDV8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Portrait of Emily White">
+              <div class="author-info">
+                <strong>Emily White</strong>
+                <span>Art Director</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-choose-us" class="why-choose-us">
+      <div class="container">
+        <h2>Why Choose Lumière Dental?</h2>
+        <div class="reason-grid">
+          <div class="reason-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+            </svg>
+            <h3>Expert Team</h3>
+            <p>Our dentists are highly skilled, continuously trained in the latest techniques and technologies.</p>
+          </div>
+          <div class="reason-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6-2h-4v2h4V4z"/>
+            </svg>
+            <h3>Advanced Technology</h3>
+            <p>We invest in cutting-edge equipment for precise diagnoses and effective treatments.</p>
+          </div>
+          <div class="reason-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-5.5h-2V7h3.5L14 10.5h-2v3h.5v2.5z"/>
+            </svg>
+            <h3>Comfort-Focused Care</h3>
+            <p>Our clinic environment and gentle approach ensure a stress-free dental experience.</p>
+          </div>
+          <div class="reason-card">
+            <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+            <h3>Personalized Treatment</h3>
+            <p>Every treatment plan is tailored to your unique needs and smile goals for optimal results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Book Your Appointment Today</h2>
+        <div class="contact-form-container">
+          <p style="margin-bottom: var(--spacing-md); color: var(--color-subtle-text); text-align: center;">Ready to experience the Lumière Dental difference? Fill out the form below, and our friendly team will be in touch shortly to schedule your visit.</p>
+          <form class="contact-form">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+
+            <label for="phone">Phone Number (Optional)</label>
+            <input type="text" id="phone" name="phone" placeholder="+44 7XXX XXXXXX">
+
+            <label for="message">Your Message / Appointment Request</label>
+            <textarea id="message" name="message" placeholder="I'd like to book a dental check-up." required></textarea>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Lumière Dental</h4>
+          <p>Premier dental care in the heart of London. We illuminate smiles with expertise and compassion.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Lumière Dental on Facebook">
+              <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M14 13.5H16.5L17 9H14V7.15C14 6.16 14.33 5.33 16.21 5.33H17V2.14C16.53 2.09 15.68 2 14.73 2C12.76 2 11.41 3.16 11.41 5.09V9H8V13.5H11.41V22H14V13.5Z"/></svg>
+            </a>
+            <a href="#" aria-label="Lumière Dental on Instagram">
+              <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.71 2 8.33 2 7.02 2.06C5.67 2.13 4.71 2.49 3.86 2.89C3.01 3.3 2.3 3.96 1.69 4.69C1.08 5.42 0.65 6.22 0.38 7.08C0.07 8.04 0 8.44 0 12C0 15.56 0.07 15.96 0.38 16.92C0.65 17.78 1.08 18.58 1.69 19.31C2.3 20.04 3.01 20.7 3.86 21.11C4.71 21.51 5.67 21.87 7.02 21.94C8.33 22 8.71 22 12 22C15.29 22 15.67 22 16.98 21.94C18.33 21.87 19.29 21.51 20.14 21.11C20.99 20.7 21.7 20.04 22.31 19.31C22.92 18.58 23.35 17.78 23.62 16.92C23.93 15.96 24 15.56 24 12C24 8.44 23.93 8.04 23.62 7.08C23.35 6.22 22.92 5.42 22.31 4.69C21.7 3.96 20.99 3.3 20.14 2.89C19.29 2.49 18.33 2.13 16.98 2.06C15.67 2 15.29 2 12 2ZM12 4C15.21 4 15.58 4 16.89 4.06C18.17 4.12 18.86 4.36 19.38 4.61C19.98 4.9 20.39 5.3 20.71 5.69C21.03 6.09 21.27 6.64 21.39 7.02C21.57 7.58 21.64 8.02 21.67 8.92C21.75 10.45 21.76 11.23 21.76 12C21.76 12.77 21.75 13.55 21.67 15.08C21.64 15.98 21.57 16.42 21.39 16.98C21.27 17.36 21.03 17.91 20.71 18.31C20.39 18.7 19.98 19.1 19.38 19.39C18.86 19.64 18.17 19.88 16.89 19.94C15.58 20 15.21 20 12 20C8.79 20 8.42 20 7.11 19.94C5.83 19.88 5.14 19.64 4.62 19.39C4.02 19.1 3.61 18.7 3.29 18.31C2.97 17.91 2.73 17.36 2.61 16.98C2.43 16.42 2.36 15.98 2.33 15.08C2.25 13.55 2.24 12.77 2.24 12C2.24 11.23 2.25 10.45 2.33 8.92C2.36 8.02 2.43 7.58 2.61 7.02C2.73 6.64 2.97 6.09 3.29 5.69C3.61 5.3 4.02 4.9 4.62 4.61C5.14 4.36 5.83 4.12 7.11 4.06C8.42 4 8.79 4 12 4ZM12 7.5C9.52 7.5 7.5 9.52 7.5 12C7.5 14.48 9.52 16.5 12 16.5C14.48 16.5 16.5 14.48 16.5 12C16.5 9.52 14.48 7.5 12 7.5ZM12 14.5C10.62 14.5 9.5 13.38 9.5 12C9.5 10.62 10.62 9.5 12 9.5C13.38 9.5 14.5 10.62 14.5 12C14.5 13.38 13.38 14.5 12 14.5ZM17.25 5.75C16.69 5.75 16.25 6.19 16.25 6.75C16.25 7.31 16.69 7.75 17.25 7.75C17.81 7.75 18.25 7.31 18.25 6.75C18.25 6.19 17.81 5.75 17.25 5.75Z"/></svg>
+            </a>
+            <a href="#" aria-label="Lumière Dental on Twitter">
+              <svg fill="currentColor" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6C21.85 6.22 21.2 6.36 20.5 6.42C21.2 5.92 21.75 5.16 22 4.2C21.35 4.58 20.65 4.84 19.9 5.01C19.25 4.32 18.3 3.92 17.24 3.92C15.13 3.92 13.43 5.62 13.43 7.73C13.43 8.01 13.46 8.28 13.52 8.54C10.51 8.39 7.84 6.96 6.03 4.7C5.7 5.25 5.51 5.86 5.51 6.5C5.51 7.82 6.2 8.94 7.23 9.61C6.6 9.59 6.01 9.42 5.48 9.14C5.48 9.16 5.48 9.17 5.48 9.19C5.48 11.08 6.74 12.65 8.44 13.01C8.16 13.09 7.87 13.12 7.57 13.12C7.36 13.12 7.15 13.1 6.94 13.06C7.45 14.67 8.93 15.82 10.65 15.85C9.35 16.88 7.77 17.51 6 17.51C5.7 17.51 5.42 17.5 5.13 17.46C6.83 18.57 8.85 19.23 11 19.23C17.2 19.23 20.66 14.07 20.66 8.58C20.66 8.4 20.66 8.22 20.65 8.04C21.32 7.57 21.93 6.84 22.46 6Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <p>123 Regent Street<br>London, W1B 5TA<br>United Kingdom</p>
+          <p>Email: <a href="mailto:info@lumieredental.co.uk">info@lumieredental.co.uk</a></p>
+          <p>Phone: <a href="tel:+442012345678">+44 (0)20 1234 5678</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>Opening Hours</h4>
+          <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+          <p>Sat: 10:00 AM - 2:00 PM</p>
+          <p>Sun: Closed</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Lumière Dental. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sticky Nav & Scroll Effect
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // Hamburger Menu Toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburger.classList.toggle('active');
+        document.body.classList.toggle('no-scroll'); // Optional: prevent scrolling when menu is open
+      });
+
+      // Close mobile nav when a link is clicked
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+          }
+        });
+      });
+
+
+      // Scroll Reveal for Sections
+      const sections = document.querySelectorAll('section');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // Stop observing once visible
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        // Skip hero and trust strip for scroll reveal, they're always visible or have their own animations
+        if (section.id !== 'hero' && section.id !== 'trust-strip') {
+          observer.observe(section);
+        } else if (section.id === 'trust-strip') {
+          // Trust strip is immediately visible
+          section.classList.add('is-visible');
+        }
+      });
+
+      // Initial hero animation trigger (CSS keyframes handle actual animation)
+      const heroTitle = document.querySelector('.hero-title');
+      const heroSubtitle = document.querySelector('.hero-subtitle');
+      const heroActions = document.querySelector('.hero-actions');
+      if (heroTitle && heroSubtitle && heroActions) {
+        heroTitle.style.animationPlayState = 'running';
+        heroSubtitle.style.animationPlayState = 'running';
+        Array.from(heroActions.children).forEach(child => child.style.animationPlayState = 'running');
+      }
+    });
+  </script>
+</body>
+</html>
